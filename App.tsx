@@ -10,6 +10,7 @@ import {
 import CustomerListView from "./components/CustomerListView/CustomerListView";
 import Searchbar from "./components/SearchBar";
 import TopMenubar from "./components/TopMenubar";
+import { GlobalStyles } from "./UI/GlobalStyles";
 
 export default function App() {
   return (
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   },
 
   footerMenu: {
-    marginBottom: 60,
+    justifyContent: "center",
     flexDirection: "row",
     width: "100%",
     height: 80,

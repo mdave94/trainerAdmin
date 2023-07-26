@@ -29,7 +29,8 @@ export default CustomerListViewItem;
 const styles = StyleSheet.create({
   item: {
     borderRadius: 12,
-    width: 170,
+    minWidth:120,
+    maxWidthidth: 170,
     height: 170,
     backgroundColor: GlobalStyles.colors.blue,
     margin: 14,

@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet } from "react-native";
+
 import IconButton from "../UI/IconButton";
 
 type TopMenubarProp = {};
@@ -25,7 +25,6 @@ export default TopMenubar;
 
 const styles = StyleSheet.create({
   topmenubar: {
-    marginTop: 40,
     justifyContent: "space-between",
     alignItems: "center",
     height: 80,
