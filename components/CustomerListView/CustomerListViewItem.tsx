@@ -2,16 +2,32 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { GlobalStyles } from "../../UI/GlobalStyles";
 
 type CustomerListViewItemProps = {
-  data: any;
+  data: {
+    id: string;
+    name: string;
+    nickname: string;
+    birthday: string;
+    phoneNumber: string;
+    email: string;
+    membershipType: string;
+  };
+  navigation: any;
 };
 
-function CustomerListViewItem({ data }: CustomerListViewItemProps) {
+function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
+  const handleCustomerPress = () => {
+    navigation.navigate("CustomerMainScreen", { customerData: data });
+  };
+
   function hasMembership() {
     return data.membershipType !== "0" && styles.hasMembership;
   }
   return (
     <View>
-      <Pressable style={({ pressed }) => pressed && styles.buttonPressed}>
+      <Pressable
+        style={({ pressed }) => pressed && styles.buttonPressed}
+        onPress={handleCustomerPress}
+      >
         <View style={[styles.item, hasMembership()]}>
           <Text style={[styles.text, hasMembership()]}>{data.name}</Text>
           <Text style={[styles.text, hasMembership()]}>({data.nickname})</Text>
@@ -29,7 +45,7 @@ export default CustomerListViewItem;
 const styles = StyleSheet.create({
   item: {
     borderRadius: 12,
-    minWidth:120,
+    minWidth: 120,
     maxWidthidth: 170,
     height: 170,
     backgroundColor: GlobalStyles.colors.blue,
