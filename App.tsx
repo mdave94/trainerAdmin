@@ -16,6 +16,7 @@ export default function App() {
           <Stack.Screen
             name="CustomerListScreen"
             component={CustomerListScreen}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="CustomerMainScreen"

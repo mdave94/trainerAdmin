@@ -15,17 +15,14 @@ function CustomerListScreen(params: CustomerListScreenProps) {
 
   return (
     <>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
-        <TopMenubar />
+      <TopMenubar />
+      <View style={styles.container}>
         <CustomerListView searchText={searchText} />
 
         <View style={styles.footerMenu}>
           <Searchbar text={searchText} onChangeText={handleSearch} />
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </>
   );
 }
