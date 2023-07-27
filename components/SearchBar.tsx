@@ -3,13 +3,19 @@ import IconButton from "../UI/IconButton";
 
 type SearchbarType = {
   text?: string;
+  onChangeText: (text: string) => void;
 };
 
-function Searchbar(params: SearchbarType) {
+function Searchbar({ text, onChangeText }: SearchbarType) {
   return (
     <>
       <View style={styles.container}>
-        <TextInput style={styles.searchbar} placeholder="Search" />
+        <TextInput
+          style={styles.searchbar}
+          placeholder="Search"
+          value={text}
+          onChangeText={onChangeText}
+        />
         <IconButton iconName="search" size={24} color="black" />
       </View>
     </>
