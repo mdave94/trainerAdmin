@@ -25,6 +25,7 @@ export default TopMenubar;
 
 const styles = StyleSheet.create({
   topmenubar: {
+    marginTop: 40,
     justifyContent: "space-between",
     alignItems: "center",
     height: 80,

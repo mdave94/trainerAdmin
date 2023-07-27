@@ -1,46 +1,28 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  StatusBar,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import CustomerListView from "./components/CustomerListView/CustomerListView";
-import Searchbar from "./components/SearchBar";
-import TopMenubar from "./components/TopMenubar";
-import { GlobalStyles } from "./UI/GlobalStyles";
+import { StatusBar } from "expo-status-bar";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import CustomerListScreen from "./screens/CustomerListScreen";
+import CustomerMainScreen from "./screens/CustomerMainScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <StatusBar barStyle="light-content" />
-      <TopMenubar />
-      <CustomerListView />
-
-      <View style={styles.footerMenu}>
-        <Searchbar />
-      </View>
-    </KeyboardAvoidingView>
+    <>
+      <StatusBar style="dark" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="CustomerListScreen"
+            component={CustomerListScreen}
+          />
+          <Stack.Screen
+            name="CustomerMainScreen"
+            component={CustomerMainScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  footerMenu: {
-    justifyContent: "center",
-    flexDirection: "row",
-    width: "100%",
-    height: 80,
-  },
-});
