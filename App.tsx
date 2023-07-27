@@ -4,18 +4,27 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import CustomerListScreen from "./screens/CustomerListScreen";
 import CustomerMainScreen from "./screens/CustomerMainScreen";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="CustomerListScreen" component={CustomerListScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="CustomerListScreen"
-            component={CustomerListScreen}
+            name="MainScreen"
+            component={DrawerNavigator}
             options={{ headerShown: false }}
           />
           <Stack.Screen

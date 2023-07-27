@@ -15,7 +15,6 @@ function CustomerListScreen(params: CustomerListScreenProps) {
 
   return (
     <>
-      <TopMenubar />
       <View style={styles.container}>
         <CustomerListView searchText={searchText} />
 
