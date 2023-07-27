@@ -2,11 +2,29 @@ import { View, StyleSheet, FlatList } from "react-native";
 import CustomerListViewItem from "./CustomerListViewItem";
 import { CUSTOMERS } from "../../data/dummy_data";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+type CustomerListView = {
+  searchText: string;
+};
 
-type CustomerListView = {};
-
-function CustomerListView(params: CustomerListView) {
+function CustomerListView({ searchText }: CustomerListView) {
   const navigation = useNavigation();
+
+  function filterData() {
+    if (!searchText) {
+      return CUSTOMERS;
+    }
+    //Search customer
+    return CUSTOMERS.filter(
+      (customer) =>
+        customer.name
+          .toLocaleLowerCase()
+          .includes(searchText.toLocaleLowerCase()) ||
+        customer.nickname
+          .toLocaleLowerCase()
+          .includes(searchText.toLocaleLowerCase())
+    );
+  }
 
   function renderMealItem(itemData: any) {
     const item = itemData.item;
@@ -27,7 +45,7 @@ function CustomerListView(params: CustomerListView) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={CUSTOMERS}
+        data={filterData()}
         keyExtractor={(item) => item.id}
         renderItem={renderMealItem}
         numColumns={2}

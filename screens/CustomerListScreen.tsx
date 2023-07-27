@@ -2,10 +2,17 @@ import { View, KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import TopMenubar from "../components/TopMenubar";
 import CustomerListView from "../components/CustomerListView/CustomerListView";
 import Searchbar from "../components/SearchBar";
+import { useState } from "react";
 
 type CustomerListScreenProps = {};
 
 function CustomerListScreen(params: CustomerListScreenProps) {
+  const [searchText, setSearchText] = useState("");
+
+  function handleSearch(text: string) {
+    setSearchText(text);
+  }
+
   return (
     <>
       <KeyboardAvoidingView
@@ -13,10 +20,10 @@ function CustomerListScreen(params: CustomerListScreenProps) {
         style={styles.container}
       >
         <TopMenubar />
-        <CustomerListView />
+        <CustomerListView searchText={searchText} />
 
         <View style={styles.footerMenu}>
-          <Searchbar />
+          <Searchbar text={searchText} onChangeText={handleSearch} />
         </View>
       </KeyboardAvoidingView>
     </>
