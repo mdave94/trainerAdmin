@@ -11,7 +11,18 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="CustomerListScreen" component={CustomerListScreen} />
+      <Drawer.Screen
+        options={{
+          drawerLabel: "All Customer",
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "black", // Change the header color to blue
+          },
+          headerTintColor: "white", // Change the text color of header buttons
+        }}
+        name="CustomerListScreen"
+        component={CustomerListScreen}
+      />
     </Drawer.Navigator>
   );
 }
