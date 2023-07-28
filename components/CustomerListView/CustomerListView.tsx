@@ -1,8 +1,9 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import CustomerListViewItem from "./CustomerListViewItem";
 import { CUSTOMERS } from "../../data/dummy_data";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import IconButton from "../../UI/IconButton";
 type CustomerListView = {
   searchText: string;
 };
@@ -23,6 +24,19 @@ function CustomerListView({ searchText }: CustomerListView) {
         customer.nickname
           .toLocaleLowerCase()
           .includes(searchText.toLocaleLowerCase())
+    );
+  }
+
+  if (filterData().length === 0) {
+    return (
+      <View style={[styles.container, styles.errorMessage]}>
+        <Text> Can't find user </Text>
+        <IconButton
+          iconName="chatbubble-ellipses-outline"
+          size={32}
+          color="black"
+        />
+      </View>
     );
   }
 
@@ -60,5 +74,11 @@ export default CustomerListView;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+  },
+  errorMessage: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
