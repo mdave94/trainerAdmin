@@ -45,6 +45,7 @@ function CustomerListView({ searchText }: CustomerListView) {
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={filterData()}
         keyExtractor={(item) => item.id}
         renderItem={renderMealItem}
