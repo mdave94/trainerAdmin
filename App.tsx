@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import CustomerListScreen from "./screens/CustomerListScreen";
 import CustomerMainScreen from "./screens/CustomerMainScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import IconButton from "./UI/IconButton";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -14,11 +15,14 @@ function DrawerNavigator() {
       <Drawer.Screen
         options={{
           drawerLabel: "All Customer",
+          drawerIcon: () => (
+            <IconButton iconName="people-outline" size={24} color="black" />
+          ),
           headerTitle: "",
           headerStyle: {
-            backgroundColor: "black", // Change the header color to blue
+            backgroundColor: "black",
           },
-          headerTintColor: "white", // Change the text color of header buttons
+          headerTintColor: "white",
         }}
         name="CustomerListScreen"
         component={CustomerListScreen}
