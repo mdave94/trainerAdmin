@@ -6,14 +6,14 @@ type InputfieldProps = {
   type: string;
   placeholder?: string;
   iconName?: string;
-  text?: string;
-  iconSize: number;
+  value: string;
+  iconSize?: number;
   iconColor?: any; //Todo check color's type
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
 };
 
 function Inputfield({
-  text,
+  value,
   placeholder,
   onChangeText,
   iconName,
@@ -26,9 +26,9 @@ function Inputfield({
   return (
     <View style={[styles.container, styleType]}>
       <TextInput
-        style={styles.searchbar}
+        style={styles.inputInner}
         placeholder={placeholder}
-        value={text}
+        value={value}
         onChangeText={onChangeText}
       />
       <IconButton iconName={iconName} size={iconSize} color={iconColor} />
@@ -50,14 +50,20 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     paddingLeft: 32,
   },
+  inputInner: {
+    width: "80%",
+    fontSize: 24,
+  },
   input: {
     borderWidth: 2,
     borderColor: "gray",
+    height: 82,
+    width: "80%",
+    fontSize: 32,
+    color: "white",
   },
   searchbar: {
     height: 82,
-    width: "80%",
-    fontSize: 24,
     // Add shadow effect
     ...Platform.select({
       ios: {
