@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Platform } from "react-native";
+import { View, StyleSheet, Text, Platform, TextInputProps } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import IconButton from "./IconButton";
 
@@ -10,7 +10,7 @@ type InputfieldProps = {
   iconSize?: number;
   iconColor?: any; //Todo check color's type
   onChangeText?: (text: string) => void;
-};
+} & TextInputProps;
 
 function Inputfield({
   value,
@@ -20,6 +20,7 @@ function Inputfield({
   iconSize,
   iconColor,
   type,
+  ...textInputProps
 }: InputfieldProps) {
   const styleType = type === "searchbar" ? styles.searchbar : styles.input;
 
@@ -30,6 +31,7 @@ function Inputfield({
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
+        {...textInputProps}
       />
       <IconButton iconName={iconName} size={iconSize} color={iconColor} />
     </View>
