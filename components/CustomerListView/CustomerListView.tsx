@@ -2,21 +2,35 @@ import { View, StyleSheet, FlatList, Text } from "react-native";
 import CustomerListViewItem from "./CustomerListViewItem";
 import { CUSTOMERS } from "../../data/dummy_data";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconButton from "../../UI/IconButton";
+import { getCustomerList } from "../../helpers/http";
+import Customer from "../../models/customer";
+
 type CustomerListView = {
   searchText: string;
 };
 
 function CustomerListView({ searchText }: CustomerListView) {
   const navigation = useNavigation();
+  const [fetchedCustomers, setFetchedCustomers] = useState<Customer[]>([]);
+
+  useEffect(() => {
+    async function fetchCustomers() {
+      const customerList = await getCustomerList();
+      console.log("customerList : ", customerList);
+      setFetchedCustomers(customerList);
+    }
+
+    fetchCustomers();
+  }, []);
 
   function filterData() {
     if (!searchText) {
-      return CUSTOMERS;
+      return fetchedCustomers;
     }
     //Search customer
-    return CUSTOMERS.filter(
+    return fetchedCustomers.filter(
       (customer) =>
         customer.name
           .toLocaleLowerCase()

@@ -5,6 +5,7 @@ import Customer from "../models/customer";
 import { Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { checkIsValidEmail } from "../helpers/utilites";
+import { storeCustomer } from "../helpers/http";
 
 type AddCustomerProps = {};
 
@@ -31,6 +32,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
 
   const handleSubmit = () => {
     if (checkIsValidEmail(formData.email)) {
+      storeCustomer(formData);
       setFormData(initialData);
       navigation.goBack();
     }
@@ -42,7 +44,6 @@ function AddCustomerScreen(params: AddCustomerProps) {
       <Inputfield
         value={formData.name}
         placeholder="John Doe"
-        type="input"
         iconSize={24}
         iconName="person-outline"
         onChangeText={(value) => handleInputChange("name", value)}
@@ -50,7 +51,6 @@ function AddCustomerScreen(params: AddCustomerProps) {
       <Inputfield
         keyboardType="numeric"
         value={formData.birthday}
-        type="input"
         iconSize={24}
         placeholder="19940711"
         iconName="book-outline"
@@ -60,7 +60,6 @@ function AddCustomerScreen(params: AddCustomerProps) {
         value={formData.email}
         autoCapitalize="none"
         placeholder="example@email.com"
-        type="input"
         iconSize={24}
         iconName="at"
         onChangeText={(value) => handleInputChange("email", value)}

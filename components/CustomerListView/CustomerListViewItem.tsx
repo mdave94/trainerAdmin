@@ -20,7 +20,10 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
   };
 
   function hasMembership() {
-    return data.membershipType !== "0" && styles.hasMembership;
+    const getstyle =
+      data.membershipType !== "" ? styles.hasMembership : styles.item;
+
+    return getstyle;
   }
   return (
     <View>
@@ -29,8 +32,11 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
         onPress={handleCustomerPress}
       >
         <View style={[styles.item, hasMembership()]}>
-          <Text style={[styles.text, hasMembership()]}>{data.name}</Text>
-          <Text style={[styles.text, hasMembership()]}>({data.nickname})</Text>
+          <Text style={[styles.text]}>{data.name}</Text>
+          {data.nickname !== "" && (
+            <Text style={[styles.text]}>({data.nickname})</Text>
+          )}
+
           <View>
             <Text>{data.membershipType}</Text>
           </View>
