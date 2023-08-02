@@ -3,8 +3,8 @@ import { Ionicons } from "@expo/vector-icons";
 
 type IconButtonProps = {
   iconName: any;
-  size: number;
-  color: string;
+  size?: number;
+  color?: string;
   onPress?: () => void;
 };
 //Custom Button component

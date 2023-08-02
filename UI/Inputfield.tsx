@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Platform } from "react-native";
+import { View, StyleSheet, Text, Platform, TextInputProps } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import IconButton from "./IconButton";
 
@@ -6,30 +6,32 @@ type InputfieldProps = {
   type: string;
   placeholder?: string;
   iconName?: string;
-  text?: string;
-  iconSize: number;
+  value: string;
+  iconSize?: number;
   iconColor?: any; //Todo check color's type
-  onChangeText: (text: string) => void;
-};
+  onChangeText?: (text: string) => void;
+} & TextInputProps;
 
 function Inputfield({
-  text,
+  value,
   placeholder,
   onChangeText,
   iconName,
   iconSize,
   iconColor,
   type,
+  ...textInputProps
 }: InputfieldProps) {
   const styleType = type === "searchbar" ? styles.searchbar : styles.input;
 
   return (
     <View style={[styles.container, styleType]}>
       <TextInput
-        style={styles.searchbar}
+        style={styles.inputInner}
         placeholder={placeholder}
-        value={text}
+        value={value}
         onChangeText={onChangeText}
+        {...textInputProps}
       />
       <IconButton iconName={iconName} size={iconSize} color={iconColor} />
     </View>
@@ -50,14 +52,20 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     paddingLeft: 32,
   },
+  inputInner: {
+    width: "80%",
+    fontSize: 24,
+  },
   input: {
     borderWidth: 2,
     borderColor: "gray",
+    height: 82,
+    width: "80%",
+    fontSize: 32,
+    color: "white",
   },
   searchbar: {
     height: 82,
-    width: "80%",
-    fontSize: 24,
     // Add shadow effect
     ...Platform.select({
       ios: {
