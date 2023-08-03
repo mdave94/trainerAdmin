@@ -1,6 +1,5 @@
 import { View, StyleSheet, FlatList, Text } from "react-native";
 import CustomerListViewItem from "./CustomerListViewItem";
-import { CUSTOMERS } from "../../data/dummy_data";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import IconButton from "../../UI/IconButton";
@@ -17,12 +16,16 @@ function CustomerListView({ searchText }: CustomerListView) {
 
   useEffect(() => {
     async function fetchCustomers() {
-      const customerList = await getCustomerList();
-      setFetchedCustomers(customerList);
+      try {
+        const customerList = await getCustomerList();
+        setFetchedCustomers(customerList);
+      } catch (error) {
+        console.error("Error fetching customer data:", error);
+      }
     }
 
     fetchCustomers();
-  }, []);
+  }, [fetchedCustomers]);
 
   function filterData() {
     if (!searchText) {
