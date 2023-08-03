@@ -24,11 +24,20 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
       data.membershipType !== "" ? styles.hasMembership : styles.noMembership;
     return getstyle;
   }
+
+  const handleLongPress = () => {
+    navigation.navigate("QuickEdit", {
+      customer: data,
+      presentation: "modal",
+    });
+  };
+
   return (
     <View>
       <Pressable
         style={({ pressed }) => pressed && styles.buttonPressed}
         onPress={handleCustomerPress}
+        onLongPress={handleLongPress}
       >
         <View style={[styles.item, hasMembership()]}>
           <Text style={[styles.text, hasMembership()]}>{data.name}</Text>

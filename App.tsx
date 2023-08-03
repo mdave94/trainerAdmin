@@ -9,6 +9,7 @@ import IconButton from "./UI/IconButton";
 import ManageMemberships from "./screens/ManageMemberships";
 import AddCustomerScreen from "./screens/AddCustomerScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import QuickEdit from "./screens/QuickEdit";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -101,6 +102,11 @@ export default function App() {
           <Stack.Screen
             name="CustomerMainScreen"
             component={CustomerMainScreen}
+          />
+          <Stack.Screen
+            name="QuickEdit"
+            component={QuickEdit}
+            options={{ presentation: "modal" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
