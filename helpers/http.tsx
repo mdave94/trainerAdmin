@@ -13,7 +13,6 @@ export async function getCustomerList(): Promise<Customer[]> {
 
   const customers: Customer[] = [];
 
-  //return console.log("response", response.data);
   for (const key in response.data) {
     const customerObj = {
       id: key,

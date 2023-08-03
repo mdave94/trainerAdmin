@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import Inputfield from "../UI/Inputfield";
 import { useState } from "react";
 import Customer from "../models/customer";
@@ -39,7 +45,11 @@ function AddCustomerScreen(params: AddCustomerProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 80 : undefined} // Increase the offset value (e.g., 100) for more space
+      style={styles.container}
+    >
       <Text> ADD CUSTOMER</Text>
       <Inputfield
         value={formData.name}
@@ -65,7 +75,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
         onChangeText={(value) => handleInputChange("email", value)}
       />
       <Button title="Register" onPress={handleSubmit} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

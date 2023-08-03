@@ -18,7 +18,6 @@ function CustomerListView({ searchText }: CustomerListView) {
   useEffect(() => {
     async function fetchCustomers() {
       const customerList = await getCustomerList();
-      console.log("customerList : ", customerList);
       setFetchedCustomers(customerList);
     }
 
