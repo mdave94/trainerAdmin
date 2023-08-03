@@ -20,7 +20,9 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
   };
 
   function hasMembership() {
-    return data.membershipType !== "0" && styles.hasMembership;
+    const getstyle =
+      data.membershipType !== "" ? styles.hasMembership : styles.noMembership;
+    return getstyle;
   }
   return (
     <View>
@@ -30,7 +32,10 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
       >
         <View style={[styles.item, hasMembership()]}>
           <Text style={[styles.text, hasMembership()]}>{data.name}</Text>
-          <Text style={[styles.text, hasMembership()]}>({data.nickname})</Text>
+          {data.nickname !== "" && (
+            <Text style={[styles.text]}>({data.nickname})</Text>
+          )}
+
           <View>
             <Text>{data.membershipType}</Text>
           </View>
@@ -48,7 +53,6 @@ const styles = StyleSheet.create({
     minWidth: 120,
     maxWidthidth: 170,
     height: 170,
-    backgroundColor: GlobalStyles.colors.blue,
     margin: 14,
     justifyContent: "center",
     textAlign: "center",
@@ -61,6 +65,9 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     opacity: 0.75,
+  },
+  noMembership: {
+    backgroundColor: GlobalStyles.colors.blue,
   },
   hasMembership: {
     backgroundColor: GlobalStyles.colors.yellow,

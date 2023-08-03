@@ -1,31 +1,23 @@
-import { View, StyleSheet, Text, Platform, TextInputProps } from "react-native";
+import { View, StyleSheet, TextInputProps } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import IconButton from "./IconButton";
 
 type InputfieldProps = {
-  type: string;
-  placeholder?: string;
   iconName?: string;
-  value: string;
   iconSize?: number;
   iconColor?: any; //Todo check color's type
-  onChangeText?: (text: string) => void;
 } & TextInputProps;
 
 function Inputfield({
-  value,
-  placeholder,
-  onChangeText,
   iconName,
   iconSize,
   iconColor,
-  type,
   ...textInputProps
 }: InputfieldProps) {
-  const styleType = type === "searchbar" ? styles.searchbar : styles.input;
+  const { placeholder, value, onChangeText } = textInputProps;
 
   return (
-    <View style={[styles.container, styleType]}>
+    <View style={[styles.container]}>
       <TextInput
         style={styles.inputInner}
         placeholder={placeholder}
@@ -51,32 +43,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 24,
     paddingLeft: 32,
+    borderWidth: 2,
+    borderColor: "gray",
+    fontSize: 32,
+    color: "white",
   },
   inputInner: {
     width: "80%",
     fontSize: 24,
-  },
-  input: {
-    borderWidth: 2,
-    borderColor: "gray",
-    height: 82,
-    width: "80%",
-    fontSize: 32,
-    color: "white",
-  },
-  searchbar: {
-    height: 82,
-    // Add shadow effect
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 12 },
-        shadowOpacity: 0.8,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
   },
 });
