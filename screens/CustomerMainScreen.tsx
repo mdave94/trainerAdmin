@@ -12,20 +12,19 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
   const renderCommentItem = (itemData: any) => {
     const item = itemData.item;
 
-    return (
-      <View>
-        <Text>{item.commentText}</Text>
-      </View>
-    );
+    return <Text>{item.commentText}</Text>;
   };
 
   return (
     <View style={styles.container}>
-      <Text>{customerData.name}</Text>
+      <View style={styles.alignItemCenter}>
+        <Text style={styles.customerName}>{customerData.name}</Text>
+      </View>
       <Button
         title="Add Membership"
         onPress={() => console.log("add membership")}
       />
+
       <FlatList data={COMMENTS} renderItem={renderCommentItem} />
     </View>
   );
@@ -37,6 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+  },
+  alignItemCenter: {
     alignItems: "center",
+  },
+  customerName: {
+    fontSize: 42,
   },
 });

@@ -100,6 +100,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            options={{ headerTitle: "" }}
             name="CustomerMainScreen"
             component={CustomerMainScreen}
           />
