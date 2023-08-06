@@ -59,8 +59,7 @@ export default CustomerListViewItem;
 const styles = StyleSheet.create({
   item: {
     borderRadius: 12,
-    minWidth: 120,
-    maxWidthidth: 170,
+    width: 120,
     height: 170,
     margin: 14,
     justifyContent: "center",
