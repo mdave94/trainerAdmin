@@ -9,6 +9,8 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
 
+  console.log(customerData);
+
   const renderCommentItem = (itemData: any) => {
     const item = itemData.item;
 
@@ -20,8 +22,22 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       <View style={styles.alignItemCenter}>
         <Text style={styles.customerName}>{customerData.name}</Text>
       </View>
+
+      <View>
+        <Text>Membership : </Text>
+        {customerData.membershipType !== "" ? (
+          <Text>{customerData.membershipType}</Text>
+        ) : (
+          <Text>No membership</Text>
+        )}
+      </View>
+
       <Button
         title="Add Membership"
+        onPress={() => console.log("add membership")}
+      />
+      <Button
+        title="Add Comment"
         onPress={() => console.log("add membership")}
       />
 
