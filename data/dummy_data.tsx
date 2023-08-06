@@ -1,3 +1,4 @@
+import CommentsLog from "../models/commentsLog";
 import Customer from "../models/customer";
 import Trainer from "../models/trainer";
 export const CUSTOMERS: Customer[] = [
@@ -104,4 +105,10 @@ export const TRAINERS: Trainer[] = [
   ),
   new Trainer("t4", "Emily Davis", "4445556666", "emily.davis@example.com"),
   new Trainer("t5", "David Lee", "7778889999", "david.lee@example.com"),
+];
+
+export const COMMENTS: CommentsLog[] = [
+  new CommentsLog("k1", new Date(), "Randm szöveg  "),
+  new CommentsLog("k2", new Date(), "Randm Text ASDASDASD "),
+  new CommentsLog("k3", new Date(), "sasLorem ipsum akasdeg  "),
 ];
