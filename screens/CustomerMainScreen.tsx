@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { Button } from "react-native";
-import { COMMENTS } from "../data/dummy_data";
-import CommentsLog from "../models/commentsLog";
+
+import CustomButton from "../components/CustomButton";
+
 type CustomerMainScreenProps = {
   route: any;
 };
@@ -31,14 +31,18 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
         )}
       </View>
 
-      <Button
-        title="Add Membership"
-        onPress={() => console.log("add membership")}
-      />
-      <Button
-        title="Add Comment"
-        onPress={() => console.log("add membership")}
-      />
+      {customerData.membershipType === "" && (
+        <View style={styles.alignItemCenter}>
+          <CustomButton onPress={() => console.log("add membership")}>
+            Add Membership
+          </CustomButton>
+        </View>
+      )}
+      <View style={styles.alignItemCenter}>
+        <CustomButton onPress={() => console.log("add comment")}>
+          Add Comment
+        </CustomButton>
+      </View>
 
       <FlatList
         data={customerData.commentLogs}

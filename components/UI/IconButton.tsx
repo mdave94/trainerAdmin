@@ -7,7 +7,7 @@ type IconButtonProps = {
   color?: string;
   onPress?: () => void;
 };
-//Custom Button component
+//Custom Button with icon component
 function IconButton({ iconName, size, color, onPress }: IconButtonProps) {
   return (
     <Pressable
