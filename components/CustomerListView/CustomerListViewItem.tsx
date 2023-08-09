@@ -10,6 +10,7 @@ type CustomerListViewItemProps = {
     phoneNumber: string;
     email: string;
     membershipType: string;
+    commentLogs: string[];
   };
   navigation: any;
 };

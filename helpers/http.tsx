@@ -23,6 +23,7 @@ export async function getCustomerList(): Promise<Customer[]> {
       phoneNumber: response.data[key].phoneNumber,
       email: response.data[key].email,
       membershipType: response.data[key].membershipType,
+      commentLogs: response.data[key].commentLogs,
     };
 
     customers.push(customerObj);

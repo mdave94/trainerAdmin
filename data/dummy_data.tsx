@@ -9,7 +9,8 @@ export const CUSTOMERS: Customer[] = [
     "1991-02-11",
     "0123456",
     "email@test.hu",
-    "10"
+    "10",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c2",
@@ -18,7 +19,8 @@ export const CUSTOMERS: Customer[] = [
     "1985-05-22",
     "0123457",
     "email2@test.hu",
-    "20"
+    "20",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c3",
@@ -27,7 +29,8 @@ export const CUSTOMERS: Customer[] = [
     "1990-11-15",
     "0123458",
     "email3@test.hu",
-    "0"
+    "0",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c4",
@@ -36,7 +39,8 @@ export const CUSTOMERS: Customer[] = [
     "1987-09-03",
     "0123459",
     "email4@test.hu",
-    "0"
+    "0",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c5",
@@ -45,7 +49,8 @@ export const CUSTOMERS: Customer[] = [
     "1995-07-25",
     "0123460",
     "email5@test.hu",
-    "10"
+    "10",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c6",
@@ -54,7 +59,8 @@ export const CUSTOMERS: Customer[] = [
     "1988-03-17",
     "0123461",
     "email6@test.hu",
-    "0"
+    "0",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c7",
@@ -63,7 +69,8 @@ export const CUSTOMERS: Customer[] = [
     "1993-06-09",
     "0123462",
     "email7@test.hu",
-    "10"
+    "10",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c8",
@@ -72,7 +79,8 @@ export const CUSTOMERS: Customer[] = [
     "1986-12-29",
     "0123463",
     "email8@test.hu",
-    "20"
+    "20",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c9",
@@ -81,7 +89,8 @@ export const CUSTOMERS: Customer[] = [
     "1992-04-01",
     "0123464",
     "email9@test.hu",
-    "10"
+    "10",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
   new Customer(
     "c10",
@@ -90,7 +99,8 @@ export const CUSTOMERS: Customer[] = [
     "1998-08-14",
     "0123465",
     "email10@test.hu",
-    "0"
+    "0",
+    ["0711 hiányzott", "08.12 skipp"]
   ),
 ];
 
