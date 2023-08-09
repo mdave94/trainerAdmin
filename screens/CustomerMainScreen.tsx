@@ -9,12 +9,11 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
 
-  console.log(customerData);
+  console.log("customerData:", customerData);
 
   const renderCommentItem = (itemData: any) => {
     const item = itemData.item;
-
-    return <Text>{item.commentText}</Text>;
+    return <Text>{item}</Text>;
   };
 
   return (
@@ -41,7 +40,10 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
         onPress={() => console.log("add membership")}
       />
 
-      <FlatList data={COMMENTS} renderItem={renderCommentItem} />
+      <FlatList
+        data={customerData.commentLogs}
+        renderItem={renderCommentItem}
+      />
     </View>
   );
 }

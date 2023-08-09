@@ -25,6 +25,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
     phoneNumber: "",
     email: "",
     membershipType: "",
+    commentLogs: [""],
   };
 
   const [formData, setFormData] = useState<Customer>(initialData);

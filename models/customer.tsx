@@ -6,7 +6,8 @@ class Customer {
     public birthday: string,
     public phoneNumber: string,
     public email: string,
-    public membershipType: string
+    public membershipType: string,
+    public commentLogs: string[]
   ) {
     this.id = id;
     this.name = name;
@@ -15,6 +16,7 @@ class Customer {
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.membershipType = membershipType;
+    this.commentLogs = commentLogs;
   }
 }
 

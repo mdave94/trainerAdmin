@@ -67,6 +67,7 @@ function CustomerListView({ searchText }: CustomerListView) {
       phoneNumber: item.phoneNumber,
       email: item.email,
       membershipType: item.membershipType,
+      commentLogs: item.commentLogs,
     };
     return (
       <CustomerListViewItem data={mealItemProps} navigation={navigation} />
