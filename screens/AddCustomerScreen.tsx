@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import Inputfield from "../UI/Inputfield";
+import Inputfield from "../components/Inputfield";
 import { useState } from "react";
 import Customer from "../models/customer";
 import { Button } from "react-native";

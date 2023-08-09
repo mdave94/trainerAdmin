@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import CustomerListScreen from "./screens/CustomerListScreen";
 import CustomerMainScreen from "./screens/CustomerMainScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import IconButton from "./UI/IconButton";
+import IconButton from "./components/UI/IconButton";
 import ManageMemberships from "./screens/ManageMemberships";
 import AddCustomerScreen from "./screens/AddCustomerScreen";
 import SettingsScreen from "./screens/SettingsScreen";

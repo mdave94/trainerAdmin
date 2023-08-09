@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { GlobalStyles } from "../../UI/GlobalStyles";
+import { GlobalStyles } from "../UI/GlobalStyles";
 
 type CustomerListViewItemProps = {
   data: {

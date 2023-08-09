@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 
-import IconButton from "../UI/IconButton";
+import IconButton from "./UI/IconButton";
 
 type TopMenubarProp = {};
 

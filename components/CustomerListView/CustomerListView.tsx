@@ -2,7 +2,7 @@ import { View, StyleSheet, FlatList, Text } from "react-native";
 import CustomerListViewItem from "./CustomerListViewItem";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import IconButton from "../../UI/IconButton";
+import IconButton from "../UI/IconButton";
 import { getCustomerList } from "../../helpers/http";
 import Customer from "../../models/customer";
 

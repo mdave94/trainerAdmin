@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { TextInput, StyleSheet, View, Platform, Keyboard } from "react-native"; // Import Platform
 
-import IconButton from "../UI/IconButton";
+import IconButton from "./UI/IconButton";
 
 type SearchbarType = {
   text?: string;
