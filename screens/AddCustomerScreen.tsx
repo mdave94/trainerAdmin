@@ -8,10 +8,10 @@ import {
 import Inputfield from "../components/Inputfield";
 import { useState } from "react";
 import Customer from "../models/customer";
-import { Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { checkIsValidEmail } from "../helpers/utilites";
 import { storeCustomer } from "../helpers/http";
+import CustomButton from "../components/CustomButton";
 
 type AddCustomerProps = {};
 
@@ -75,7 +75,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
         iconName="at"
         onChangeText={(value) => handleInputChange("email", value)}
       />
-      <Button title="Register" onPress={handleSubmit} />
+      <CustomButton onPress={handleSubmit}>Register</CustomButton>
     </KeyboardAvoidingView>
   );
 }
