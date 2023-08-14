@@ -23,9 +23,8 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     closeModal();
   };
 
-  console.log("customerData:", customerData);
-
   const renderCommentItem = (itemData: any) => {
+    console.log(itemData);
     const item = itemData.item;
     return <Text>{item}</Text>;
   };
@@ -56,7 +55,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <CustomButton onPress={openModal}>Add comment</CustomButton>
         <AddCommentModalScreen
-          customerId={customerData}
+          customerId={customerData.id}
           visible={modalVisible}
           onClose={closeModal}
           onSubmit={handleSubmitModal}
@@ -64,6 +63,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       </View>
 
       <FlatList
+        style={{ backgroundColor: "red", marginBottom: 12 }}
         data={customerData.commentLogs}
         renderItem={renderCommentItem}
       />

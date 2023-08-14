@@ -10,6 +10,7 @@ import {
   Dimensions, // Import Dimensions
 } from "react-native";
 import CustomButton from "../components/CustomButton";
+import { storeComment } from "../helpers/http";
 
 type AddCommentModalScreenProps = {
   visible: boolean;
@@ -31,6 +32,7 @@ function AddCommentModalScreen({
   };
 
   const handleSubmit = () => {
+    storeComment(customerId, inputValue);
     onSubmit(inputValue);
     setInputValue("");
   };
