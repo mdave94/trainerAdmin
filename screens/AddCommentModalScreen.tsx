@@ -7,18 +7,22 @@ import {
   Button,
   StyleSheet,
   ModalProps,
+  Dimensions, // Import Dimensions
 } from "react-native";
+import CustomButton from "../components/CustomButton";
 
 type AddCommentModalScreenProps = {
   visible: boolean;
   onClose: () => void;
   onSubmit: (inputValue: string) => void;
+  customerId: string;
 } & ModalProps;
 
 function AddCommentModalScreen({
   visible,
   onSubmit,
   onClose,
+  customerId,
 }: AddCommentModalScreenProps) {
   const [inputValue, setInputValue] = useState("");
 
@@ -41,8 +45,12 @@ function AddCommentModalScreen({
             value={inputValue}
             onChangeText={handleInputChange}
           />
-          <Button title="Submit" onPress={handleSubmit} />
-          <Button title="Close" onPress={onClose} />
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={handleSubmit}>Submit</CustomButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={onClose}>Close</CustomButton>
+          </View>
         </View>
       </View>
     </Modal>
@@ -58,12 +66,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
+  buttonContainer: {
+    margin: 8,
+  },
   modalContent: {
     backgroundColor: "white",
     padding: 20,
     borderRadius: 8,
     elevation: 5,
     alignItems: "center",
+    width: Dimensions.get("window").width - 40, // Set the width
   },
   input: {
     borderWidth: 1,

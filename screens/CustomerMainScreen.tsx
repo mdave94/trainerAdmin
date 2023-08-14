@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useState } from "react";
 import CustomButton from "../components/CustomButton";
-import { Button } from "react-native";
 import AddCommentModalScreen from "./AddCommentModalScreen";
 type CustomerMainScreenProps = {
   route: any;
@@ -57,6 +56,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <CustomButton onPress={openModal}>Add comment</CustomButton>
         <AddCommentModalScreen
+          customerId={customerData}
           visible={modalVisible}
           onClose={closeModal}
           onSubmit={handleSubmitModal}

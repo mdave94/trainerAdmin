@@ -48,7 +48,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 80 : undefined} // Increase the offset value (e.g., 100) for more space
+      keyboardVerticalOffset={Platform.OS === "ios" ? 80 : undefined}
       style={styles.container}
     >
       <Text> ADD CUSTOMER</Text>
