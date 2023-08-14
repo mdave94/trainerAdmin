@@ -1,17 +1,30 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
-
+import { useState } from "react";
 import CustomButton from "../components/CustomButton";
-
+import AddCommentModalScreen from "./AddCommentModalScreen";
 type CustomerMainScreenProps = {
   route: any;
 };
 
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
+  const [modalVisible, setModalVisible] = useState(false);
 
-  console.log("customerData:", customerData);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const handleSubmitModal = (inputValue: string) => {
+    console.log("Submitted:", inputValue);
+    closeModal();
+  };
 
   const renderCommentItem = (itemData: any) => {
+    console.log(itemData);
     const item = itemData.item;
     return <Text>{item}</Text>;
   };
@@ -38,13 +51,19 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
           </CustomButton>
         </View>
       )}
-      <View style={styles.alignItemCenter}>
-        <CustomButton onPress={() => console.log("add comment")}>
-          Add Comment
-        </CustomButton>
+
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <CustomButton onPress={openModal}>Add comment</CustomButton>
+        <AddCommentModalScreen
+          customerId={customerData.id}
+          visible={modalVisible}
+          onClose={closeModal}
+          onSubmit={handleSubmitModal}
+        />
       </View>
 
       <FlatList
+        style={{ backgroundColor: "red", marginBottom: 12 }}
         data={customerData.commentLogs}
         renderItem={renderCommentItem}
       />
