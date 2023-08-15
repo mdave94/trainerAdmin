@@ -1,8 +1,16 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  Alert,
+} from "react-native";
 import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
-import IconButton from "../components/UI/IconButton";
+import { deleteCommentBE } from "../helpers/http";
+
 type CustomerMainScreenProps = {
   route: any;
 };
@@ -10,7 +18,11 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(customerData.commentLogs);
+  const [comments, setComments] = useState(
+    Object.entries(customerData.commentLogs).reverse()
+  );
+
+  //console.log(customerData.commentLogs);
   const openModal = () => {
     setModalVisible(true);
   };
@@ -28,12 +40,42 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     const commentId = itemData.item[0]; // Extract the comment ID (key)
     const commentText = itemData.item[1]; // Extract the comment text (value)
 
+    const deleteComment = () => {
+      Alert.alert(
+        "Delete Comment",
+        "Are you sure you want to delete this comment?",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              const updatedComments = comments.filter(
+                ([id]) => id !== commentId
+              );
+
+              deleteCommentBE(customerData.id, commentId);
+              setComments(updatedComments);
+            },
+          },
+        ]
+      );
+    };
+
     return (
       <View style={styles.commentContainer}>
         <Text style={styles.commentText} key={commentId}>
           {commentText}
         </Text>
-        <IconButton iconName="trash-bin-outline" size={24} />
+
+        <Pressable onPress={deleteComment}>
+          <View>
+            <Text>D</Text>
+          </View>
+        </Pressable>
       </View>
     );
   };
@@ -81,7 +123,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       <View style={styles.flatlistContainer}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={reversedCommentData}
+          data={comments}
           renderItem={renderCommentItem}
         />
       </View>
@@ -93,10 +135,12 @@ export default CustomerMainScreen;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flex: 1,
     justifyContent: "center",
   },
   flatlistContainer: {
+    marginHorizontal: 12,
     maxHeight: 240,
     minHeight: 160,
     marginBottom: 42,
@@ -108,16 +152,19 @@ const styles = StyleSheet.create({
     fontSize: 42,
   },
   commentContainer: {
+    marginBottom: 4,
     borderRadius: 24,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     borderWidth: 1,
-    height: 62,
+    minHeight: 62,
     fontSize: 24,
   },
   commentText: {
+    maxWidth: "70%",
     marginLeft: 24,
     fontSize: 24,
   },
+  icon: {},
 });

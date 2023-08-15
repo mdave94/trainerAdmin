@@ -31,6 +31,7 @@ export async function getCustomerList(): Promise<Customer[]> {
 
   return customers;
 }
+
 export async function storeComment(customerId: string, comment: string) {
   try {
     const commentRef = rootURL + `customers/${customerId}/commentLogs.json`;
@@ -40,5 +41,18 @@ export async function storeComment(customerId: string, comment: string) {
     console.log("Comment added successfully");
   } catch (error) {
     console.error("Error adding comment:", error);
+  }
+}
+
+export async function deleteCommentBE(customerId: string, commentId: string) {
+  try {
+    const commentRef =
+      rootURL + `customers/${customerId}/commentLogs/${commentId}.json`;
+
+    await axios.delete(commentRef);
+
+    console.log("Comment deleted successfully");
+  } catch (error) {
+    console.error("Error deleting comment:", error);
   }
 }
