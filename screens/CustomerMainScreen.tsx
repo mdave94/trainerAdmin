@@ -9,7 +9,7 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
   const [modalVisible, setModalVisible] = useState(false);
-
+  console.log(customerData.commentLogs);
   const openModal = () => {
     setModalVisible(true);
   };
@@ -24,9 +24,10 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
   };
 
   const renderCommentItem = (itemData: any) => {
-    console.log(itemData);
-    const item = itemData.item;
-    return <Text>{item}</Text>;
+    const commentId = itemData.item[0]; // Extract the comment ID (key)
+    const commentText = itemData.item[1]; // Extract the comment text (value)
+
+    return <Text key={commentId}>{commentText}</Text>;
   };
 
   return (
@@ -63,8 +64,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       </View>
 
       <FlatList
-        style={{ backgroundColor: "red", marginBottom: 12 }}
-        data={customerData.commentLogs}
+        data={Object.entries(customerData.commentLogs)}
         renderItem={renderCommentItem}
       />
     </View>
