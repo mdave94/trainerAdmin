@@ -10,7 +10,7 @@ import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
 import { deleteCommentBE } from "../helpers/http";
-
+import React from "react";
 type CustomerMainScreenProps = {
   route: any;
 };
@@ -18,11 +18,14 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
   const [modalVisible, setModalVisible] = useState(false);
+  const [longPressedCommentId, setLongPressedCommentId] = useState<
+    string | null
+  >(null);
+
   const [comments, setComments] = useState(
     Object.entries(customerData.commentLogs).reverse()
   );
 
-  //console.log(customerData.commentLogs);
   const openModal = () => {
     setModalVisible(true);
   };
@@ -40,7 +43,8 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     const commentId = itemData.item[0]; // Extract the comment ID (key)
     const commentText = itemData.item[1]; // Extract the comment text (value)
 
-    const deleteComment = () => {
+    const handleDeleteComment = (commentId: string) => {
+      setLongPressedCommentId(commentId);
       Alert.alert(
         "Delete Comment",
         "Are you sure you want to delete this comment?",
@@ -66,7 +70,11 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     };
 
     return (
-      <Pressable onLongPress={deleteComment}>
+      <Pressable
+        onLongPress={() => handleDeleteComment(commentId)}
+        onPressOut={() => setLongPressedCommentId(null)} // Reset the long-pressed item
+        style={longPressedCommentId === commentId ? styles.deleteElement : null}
+      >
         <View style={styles.commentContainer}>
           <Text style={styles.commentText} key={commentId}>
             {commentText}
@@ -119,6 +127,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
           showsVerticalScrollIndicator={false}
           data={comments}
           renderItem={renderCommentItem}
+          extraData={comments}
         />
       </View>
     </View>
@@ -132,6 +141,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     justifyContent: "center",
+  },
+  deleteElement: {
+    backgroundColor: "red",
+    opacity: 0.8,
   },
   flatlistContainer: {
     marginHorizontal: 12,
