@@ -66,22 +66,16 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     };
 
     return (
-      <View style={styles.commentContainer}>
-        <Text style={styles.commentText} key={commentId}>
-          {commentText}
-        </Text>
-
-        <Pressable onPress={deleteComment}>
-          <View>
-            <Text>D</Text>
-          </View>
-        </Pressable>
-      </View>
+      <Pressable onLongPress={deleteComment}>
+        <View style={styles.commentContainer}>
+          <Text style={styles.commentText} key={commentId}>
+            {commentText}
+          </Text>
+        </View>
+      </Pressable>
     );
   };
-  const reversedCommentData = Object.entries(
-    customerData.commentLogs
-  ).reverse();
+
   return (
     <View style={styles.container}>
       <View style={styles.alignItemCenter}>
