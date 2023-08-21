@@ -18,11 +18,11 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
   const [modalVisible, setModalVisible] = useState(false);
+  const commentLogs = customerData.commentLogs || {}; // Ensure commentLogs is an object
   const [comments, setComments] = useState(
-    Object.entries(customerData.commentLogs).reverse()
+    Object.entries(commentLogs).reverse()
   );
 
-  //console.log(customerData.commentLogs);
   const openModal = () => {
     setModalVisible(true);
   };
