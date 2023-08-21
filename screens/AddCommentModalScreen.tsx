@@ -43,7 +43,7 @@ function AddCommentModalScreen({
         <View style={styles.modalContent}>
           <TextInput
             style={styles.input}
-            placeholder="Enter something..."
+            placeholder="Add comment"
             value={inputValue}
             onChangeText={handleInputChange}
           />
@@ -74,9 +74,10 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "white",
     padding: 20,
-    borderRadius: 8,
+    borderRadius: 12,
     elevation: 5,
     alignItems: "center",
+
     width: Dimensions.get("window").width - 40, // Set the width
   },
   input: {
@@ -85,6 +86,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     width: "100%",
-    borderRadius: 5,
+    borderRadius: 12,
+    fontSize: 21,
+    height: 72,
   },
 });
