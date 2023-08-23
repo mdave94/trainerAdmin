@@ -107,7 +107,7 @@ export default function App() {
           <Stack.Screen
             name="QuickEdit"
             component={QuickEdit}
-            options={{ presentation: "modal" }}
+            options={{ presentation: "modal", headerTitle: "" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
