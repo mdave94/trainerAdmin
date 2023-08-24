@@ -1,5 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { GlobalStyles } from "../UI/GlobalStyles";
+import React, { createRef, useRef } from "react";
+import ActionSheet from "react-native-actions-sheet";
+import { SheetProps } from "react-native-actions-sheet";
+import QuickEdit from "../../screens/QuickEdit";
 
 type CustomerListViewItemProps = {
   data: {
@@ -16,6 +20,8 @@ type CustomerListViewItemProps = {
 };
 
 function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
+  const actionSheetRef = useRef<any | null>(null);
+
   const handleCustomerPress = () => {
     navigation.navigate("CustomerMainScreen", { customerData: data });
   };
@@ -27,10 +33,11 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
   }
 
   const handleLongPress = () => {
-    navigation.navigate("QuickEdit", {
-      customer: data,
-      presentation: "modal",
-    });
+    if (data.membershipType !== "") {
+      if (actionSheetRef.current) {
+        (actionSheetRef.current as any).show();
+      }
+    }
   };
 
   return (
@@ -51,6 +58,17 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
           </View>
         </View>
       </Pressable>
+
+      <ActionSheet
+        gestureEnabled={true}
+        ref={actionSheetRef}
+        overlayColor="rgba(0, 0, 0, 0.7)"
+        containerStyle={styles.actionSheetContainer}
+      >
+        <View style={styles.actionSheetContent}>
+          <QuickEdit customer={data} />
+        </View>
+      </ActionSheet>
     </View>
   );
 }
@@ -58,6 +76,21 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
 export default CustomerListViewItem;
 
 const styles = StyleSheet.create({
+  actionSheetContainer: {
+    borderRadius: 42,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 400,
+    backgroundColor: "white",
+  },
+
+  actionSheetContent: {
+    justifyContent: "center",
+    alignItems: "center",
+
+    padding: 20,
+    borderRadius: 42,
+  },
   item: {
     borderRadius: 12,
     width: 120,

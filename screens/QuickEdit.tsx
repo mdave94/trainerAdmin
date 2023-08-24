@@ -2,12 +2,11 @@ import { useState } from "react";
 import { View, Text, Alert, StyleSheet, Pressable } from "react-native";
 
 type QuickEditProps = {
-  route: any;
+  route?: any;
+  customer: any;
 };
 
-function QuickEdit({ route }: QuickEditProps) {
-  const { customer } = route.params;
-
+function QuickEdit({ customer }: QuickEditProps) {
   const [sessionCounter, setSessionCounter] = useState<number>(
     customer.membershipType
   );
@@ -69,8 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     borderRadius: 42,
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
   },
   buttonText: {
     fontSize: 124,
