@@ -22,8 +22,9 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
     string | null
   >(null);
 
+  const commentLogs = customerData.commentLogs || {}; // Ensure commentLogs is an object
   const [comments, setComments] = useState(
-    Object.entries(customerData.commentLogs).reverse()
+    Object.entries(commentLogs).reverse()
   );
 
   const openModal = () => {
@@ -90,45 +91,55 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
         <Text style={styles.customerName}>{customerData.name}</Text>
       </View>
 
-      <View>
-        <Text>Membership : </Text>
+      <View style={styles.alignItemCenter}>
+        <Text
+          style={{
+            fontSize: 28,
+          }}
+        >
+          Membership :{" "}
+        </Text>
         {customerData.membershipType !== "" ? (
-          <Text>{customerData.membershipType}</Text>
+          <Text
+            style={{
+              fontSize: 112,
+            }}
+          >
+            {customerData.membershipType}
+          </Text>
         ) : (
           <Text>No membership</Text>
         )}
       </View>
 
-      {customerData.membershipType === "" && (
-        <View style={styles.alignItemCenter}>
-          <CustomButton onPress={() => console.log("add membership")}>
-            Add Membership
-          </CustomButton>
+      <View style={styles.bottomContainer}>
+        {customerData.membershipType === "" && (
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={() => console.log("add membership")}>
+              Add Membership
+            </CustomButton>
+          </View>
+        )}
+        <View style={styles.buttonContainer}>
+          <CustomButton onPress={openModal}>Add comment</CustomButton>
+          <AddCommentModalScreen
+            customerId={customerData.id}
+            visible={modalVisible}
+            onClose={closeModal}
+            onSubmit={handleSubmitModal}
+          />
         </View>
-      )}
-
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <CustomButton onPress={openModal}>Add comment</CustomButton>
-        <AddCommentModalScreen
-          customerId={customerData.id}
-          visible={modalVisible}
-          onClose={closeModal}
-          onSubmit={handleSubmitModal}
-        />
-      </View>
-      <View style={styles.flatlistContainer}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={comments}
-          renderItem={renderCommentItem}
-          extraData={comments}
-        />
+        <View style={styles.flatlistContainer}>
+          {comments.length > 0 ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={comments}
+              renderItem={renderCommentItem}
+            />
+          ) : (
+            <Text>No comments available.</Text>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -138,9 +149,12 @@ export default CustomerMainScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    justifyContent: "space-between",
     flex: 1,
-    justifyContent: "center",
+  },
+  deleteElement: {
+    backgroundColor: "red",
+    opacity: 0.8,
   },
   deleteElement: {
     backgroundColor: "red",
@@ -173,5 +187,11 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     fontSize: 24,
   },
-  icon: {},
+  bottomContainer: {
+    justifyContent: "space-between",
+  },
+  buttonContainer: {
+    alignItems: "center",
+    marginBottom: 24,
+  },
 });
