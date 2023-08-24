@@ -156,10 +156,6 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     opacity: 0.8,
   },
-  deleteElement: {
-    backgroundColor: "red",
-    opacity: 0.8,
-  },
   flatlistContainer: {
     marginHorizontal: 12,
     maxHeight: 240,
