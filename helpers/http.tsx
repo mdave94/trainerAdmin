@@ -56,3 +56,24 @@ export async function deleteCommentBE(customerId: string, commentId: string) {
     console.error("Error deleting comment:", error);
   }
 }
+
+export async function decreaseSessionCount(customerId: string) {
+  try {
+    const customerRef = `${rootURL}/customers/${customerId}.json`;
+
+    const response = await axios.get(customerRef);
+
+    const customerData = response.data;
+
+    if (customerData) {
+      const currentMembershipType = parseInt(customerData.membershipType) || 0;
+      const newMembershipType = Math.max(currentMembershipType - 1, 0);
+
+      await axios.patch(customerRef, { membershipType: newMembershipType });
+    } else {
+      console.error("Customer not found");
+    }
+  } catch (error) {
+    console.log("error in descreasing memberSessions : ", error);
+  }
+}
