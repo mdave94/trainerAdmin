@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, Alert, StyleSheet, Pressable } from "react-native";
+import { decreaseSessionCount } from "../helpers/http";
 
 type QuickEditProps = {
   route?: any;
@@ -25,6 +26,8 @@ function QuickEdit({ customer }: QuickEditProps) {
             Alert.alert("Hiba", "Elfogytak az alkalmak");
           } else {
             setSessionCounter(sessionCounter - 1);
+
+            decreaseSessionCount(customer.id);
           }
         },
       },
