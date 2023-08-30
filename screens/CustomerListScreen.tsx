@@ -1,6 +1,6 @@
 import { View, KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import CustomerListView from "../components/CustomerListView/CustomerListView";
-import Searchbar from "../components/SearchBar";
+import Searchbar from "../components/UI/SearchBar";
 import { useState } from "react";
 
 type CustomerListScreenProps = {};

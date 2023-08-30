@@ -7,7 +7,7 @@ import {
   Alert,
 } from "react-native";
 import { useState } from "react";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/UI/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
 import { deleteCommentBE } from "../helpers/http";
 import React from "react";
@@ -137,7 +137,9 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
               renderItem={renderCommentItem}
             />
           ) : (
-            <Text>No comments available.</Text>
+            <View style={{ alignItems: "center" }}>
+              <Text>No comments available.</Text>
+            </View>
           )}
         </View>
       </View>
@@ -151,6 +153,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "space-between",
     flex: 1,
+    backgroundColor: "white",
   },
   deleteElement: {
     backgroundColor: "red",
@@ -166,6 +169,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   customerName: {
+    marginTop: 24,
     fontSize: 42,
   },
   commentContainer: {

@@ -1,6 +1,6 @@
 import { View, StyleSheet, TextInputProps } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import IconButton from "./UI/IconButton";
+import IconButton from "./IconButton";
 
 type InputfieldProps = {
   iconName?: string;
