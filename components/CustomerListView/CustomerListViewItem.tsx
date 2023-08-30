@@ -1,8 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { GlobalStyles } from "../UI/GlobalStyles";
-import React, { createRef, useRef } from "react";
+import React, { useRef } from "react";
 import ActionSheet from "react-native-actions-sheet";
-import { SheetProps } from "react-native-actions-sheet";
 import QuickEdit from "../../screens/QuickEdit";
 
 type CustomerListViewItemProps = {
@@ -48,9 +47,13 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
         onLongPress={handleLongPress}
       >
         <View style={[styles.item, hasMembership()]}>
-          <Text style={[styles.text, hasMembership()]}>{data.name}</Text>
+          <Text style={[styles.text, hasMembership(), { textAlign: "center" }]}>
+            {data.name}
+          </Text>
           {data.nickname !== "" && (
-            <Text style={[styles.text]}>({data.nickname})</Text>
+            <Text style={[styles.text, hasMembership()]}>
+              ({data.nickname})
+            </Text>
           )}
 
           <View>
@@ -62,7 +65,6 @@ function CustomerListViewItem({ data, navigation }: CustomerListViewItemProps) {
       <ActionSheet
         gestureEnabled={true}
         ref={actionSheetRef}
-        overlayColor="rgba(0, 0, 0, 0.7)"
         containerStyle={styles.actionSheetContainer}
       >
         <View style={styles.actionSheetContent}>
@@ -77,19 +79,15 @@ export default CustomerListViewItem;
 
 const styles = StyleSheet.create({
   actionSheetContainer: {
-    borderRadius: 42,
     justifyContent: "center",
     alignItems: "center",
     height: 400,
-    backgroundColor: "white",
   },
 
   actionSheetContent: {
     justifyContent: "center",
     alignItems: "center",
-
     padding: 20,
-    borderRadius: 42,
   },
   item: {
     borderRadius: 12,
@@ -97,7 +95,6 @@ const styles = StyleSheet.create({
     height: 170,
     margin: 14,
     justifyContent: "center",
-    textAlign: "center",
     alignItems: "center",
   },
   text: {

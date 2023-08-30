@@ -97,10 +97,24 @@ export default function App() {
           <Stack.Screen
             name="MainScreen"
             component={DrawerNavigator}
-            options={{ headerShown: false }}
+            options={{
+              headerShown: false,
+            }}
           />
           <Stack.Screen
-            options={{ headerTitle: "" }}
+            options={{
+              headerTitle: "",
+              headerTintColor: "white",
+              headerStyle: { backgroundColor: "black" },
+              headerRight: () => (
+                <IconButton
+                  iconName="settings-outline" // Use the appropriate icon name
+                  size={24}
+                  color="white"
+                  onPress={() => {}}
+                />
+              ),
+            }}
             name="CustomerMainScreen"
             component={CustomerMainScreen}
           />

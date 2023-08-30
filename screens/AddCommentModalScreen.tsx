@@ -9,7 +9,7 @@ import {
   ModalProps,
   Dimensions, // Import Dimensions
 } from "react-native";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/UI/CustomButton";
 import { storeComment } from "../helpers/http";
 
 type AddCommentModalScreenProps = {

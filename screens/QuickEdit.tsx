@@ -4,7 +4,7 @@ import { decreaseSessionCount } from "../helpers/http";
 
 type QuickEditProps = {
   route?: any;
-  customer: any;
+  customer?: any;
 };
 
 function QuickEdit({ customer }: QuickEditProps) {
