@@ -11,6 +11,8 @@ import CustomButton from "../components/UI/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
 import { deleteCommentBE } from "../helpers/http";
 import React from "react";
+import SwipeableComponent from "../components/SwipeableComponent";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 type CustomerMainScreenProps = {
   route: any;
 };
@@ -130,17 +132,9 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
           />
         </View>
         <View style={styles.flatlistContainer}>
-          {comments.length > 0 ? (
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              data={comments}
-              renderItem={renderCommentItem}
-            />
-          ) : (
-            <View style={{ alignItems: "center" }}>
-              <Text>No comments available.</Text>
-            </View>
-          )}
+          <GestureHandlerRootView>
+            <SwipeableComponent />
+          </GestureHandlerRootView>
         </View>
       </View>
     </View>
