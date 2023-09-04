@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
+import { deleteCommentBE } from "../../helpers/http";
+import AddCommentModalScreen from "../../screens/AddCommentModalScreen";
 
 interface DataItem {
   id: string;
@@ -9,24 +11,28 @@ interface DataItem {
 }
 
 type SwipeableListComponentProps = {
-  items: {};
+  items: {
+    id: string;
+    text: string;
+  };
+  customerId: string;
 };
-
-const initialData: DataItem[] = Array.from({ length: 20 }, (_, i) => ({
-  id: `item-${i}`,
-  text: `Item #${i}`,
-}));
 
 export default function SwipeableListComponent({
   items,
+  customerId,
 }: SwipeableListComponentProps) {
-  const ids = Object.keys(items);
-  const textValues = Object.values(items);
+  const dataArray: DataItem[] = [];
+  /* becouse of backend datatype needs to reconstruct  */
+  for (const [id, text] of Object.entries(items)) {
+    dataArray.push({ id, text });
+  }
 
-  const [data, setData] = useState<DataItem[]>(initialData);
+  const [data, setData] = useState<DataItem[]>(dataArray);
 
-  const deleteItem = useCallback((id: string) => {
-    setData((prevData) => prevData.filter((item) => item.id !== id));
+  const deleteItem = useCallback((commentId: string) => {
+    deleteCommentBE(customerId, commentId);
+    setData((prevData) => prevData.filter((item) => item.id !== commentId));
   }, []);
 
   const editItem = useCallback((id: string) => {
@@ -72,7 +78,7 @@ export default function SwipeableListComponent({
       <SwipeableFlatList
         data={data}
         keyExtractor={(item) => item.id}
-        enableOpenMultipleRows={false} //make sure to refresh the list once you alter this
+        enableOpenMultipleRows={false}
         renderItem={renderItem}
         renderLeftActions={renderLeftAction}
         renderRightActions={renderRightAction}
@@ -89,10 +95,13 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     backgroundColor: "#fff",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
+
+    borderWidth: 2,
+    marginBottom: 2,
+    borderRadius: 18,
   },
   rightAction: {
+    borderRadius: 18,
     backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
@@ -100,6 +109,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   leftAction: {
+    borderRadius: 18,
     backgroundColor: "lightblue",
     justifyContent: "center",
     alignItems: "center",

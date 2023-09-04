@@ -134,7 +134,10 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
           />
         </View>
         <View style={styles.flatlistContainer}>
-          <SwipeableListComponent items={commentLogs} />
+          <SwipeableListComponent
+            items={commentLogs}
+            customerId={customerData.id}
+          />
         </View>
       </View>
     </View>
