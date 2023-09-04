@@ -13,6 +13,7 @@ import { deleteCommentBE } from "../helpers/http";
 import React from "react";
 import SwipeableComponent from "../components/SwipeableComponent";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 type CustomerMainScreenProps = {
   route: any;
 };
