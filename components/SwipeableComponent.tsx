@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -9,14 +9,7 @@ const SwipeableComponent = () => {
     // Ebben a példában egyszerűen egy háttérként használunk egy RectButton-t
     return (
       <RectButton onPress={() => console.log("Swipeable művelet kattintás")}>
-        <View
-          style={{
-            backgroundColor: "blue",
-            justifyContent: "center",
-            alignItems: "flex-end",
-            padding: 20,
-          }}
-        >
+        <View style={styles.reactionElem}>
           <Text style={{ color: "white" }}>Swipe</Text>
         </View>
       </RectButton>
@@ -25,9 +18,29 @@ const SwipeableComponent = () => {
 
   return (
     <Swipeable renderRightActions={renderRightActions}>
-      <Text>Ez egy csúsztatható elem.</Text>
+      <Text style={styles.swipeItem}>Ez egy csúsztatható elem.</Text>
     </Swipeable>
   );
 };
 
 export default SwipeableComponent;
+
+const styles = StyleSheet.create({
+  reactionElem: {
+    backgroundColor: "red",
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+    padding: 40,
+  },
+  swipeItem: {
+    marginLeft: 24,
+    fontSize: 24,
+    marginBottom: 4,
+    borderRadius: 24,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 1,
+    minHeight: 62,
+  },
+});
