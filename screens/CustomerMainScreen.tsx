@@ -13,6 +13,7 @@ import { deleteCommentBE } from "../helpers/http";
 import React from "react";
 import SwipeableComponent from "../components/SwipeableComponent";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import SwipeableListComponent from "../components/UI/SwipeableListComponent";
 
 type CustomerMainScreenProps = {
   route: any;
@@ -133,9 +134,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
           />
         </View>
         <View style={styles.flatlistContainer}>
-          <GestureHandlerRootView>
-            <SwipeableComponent />
-          </GestureHandlerRootView>
+          <SwipeableListComponent items={commentLogs} />
         </View>
       </View>
     </View>
