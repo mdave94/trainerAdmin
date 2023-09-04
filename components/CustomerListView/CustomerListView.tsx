@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import IconButton from "../UI/IconButton";
 import { getCustomerList } from "../../helpers/http";
 import Customer from "../../models/customer";
+import Swipelist from "react-native-swipeable-list-view";
 
 type CustomerListView = {
   searchText: string;
