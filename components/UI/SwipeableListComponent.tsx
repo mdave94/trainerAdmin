@@ -79,6 +79,7 @@ export default function SwipeableListComponent({
     <View style={styles.container}>
       <StatusBar style="auto" />
       <SwipeableFlatList
+        showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id}
         enableOpenMultipleRows={false}

@@ -40,7 +40,7 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
             fontSize: 28,
           }}
         >
-          Membership :{" "}
+          Membership :
         </Text>
         {customerData.membershipType !== "" ? (
           <Text
@@ -87,17 +87,15 @@ export default CustomerMainScreen;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "space-between",
     flex: 1,
     backgroundColor: "white",
   },
   deleteElement: {
-    backgroundColor: "red",
     opacity: 0.8,
   },
   flatlistContainer: {
     marginHorizontal: 12,
-    maxHeight: 240,
+    height: 300,
     minHeight: 160,
     marginBottom: 42,
   },
@@ -107,17 +105,9 @@ const styles = StyleSheet.create({
   customerName: {
     marginTop: 24,
     fontSize: 42,
+    marginBottom: 24,
   },
-  commentContainer: {
-    marginBottom: 4,
-    borderRadius: 24,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderWidth: 1,
-    minHeight: 62,
-    fontSize: 24,
-  },
+
   commentText: {
     maxWidth: "70%",
     marginLeft: 24,
