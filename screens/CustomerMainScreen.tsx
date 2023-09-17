@@ -1,18 +1,8 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Pressable,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import CustomButton from "../components/UI/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
-import { deleteCommentBE } from "../helpers/http";
 import React from "react";
-import SwipeableComponent from "../components/SwipeableComponent";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SwipeableListComponent from "../components/UI/SwipeableListComponent";
 
 type CustomerMainScreenProps = {
@@ -22,14 +12,8 @@ type CustomerMainScreenProps = {
 function CustomerMainScreen(params: CustomerMainScreenProps) {
   const { customerData } = params.route.params;
   const [modalVisible, setModalVisible] = useState(false);
-  const [longPressedCommentId, setLongPressedCommentId] = useState<
-    string | null
-  >(null);
 
   const commentLogs = customerData.commentLogs || {}; // Ensure commentLogs is an object
-  const [comments, setComments] = useState(
-    Object.entries(commentLogs).reverse()
-  );
 
   const openModal = () => {
     setModalVisible(true);
@@ -42,51 +26,6 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
   const handleSubmitModal = (inputValue: string) => {
     console.log("Submitted:", inputValue);
     closeModal();
-  };
-
-  const renderCommentItem = (itemData: any) => {
-    const commentId = itemData.item[0]; // Extract the comment ID (key)
-    const commentText = itemData.item[1]; // Extract the comment text (value)
-
-    const handleDeleteComment = (commentId: string) => {
-      setLongPressedCommentId(commentId);
-      Alert.alert(
-        "Delete Comment",
-        "Are you sure you want to delete this comment?",
-        [
-          {
-            text: "Cancel",
-            style: "cancel",
-          },
-          {
-            text: "Delete",
-            style: "destructive",
-            onPress: () => {
-              const updatedComments = comments.filter(
-                ([id]) => id !== commentId
-              );
-
-              deleteCommentBE(customerData.id, commentId);
-              setComments(updatedComments);
-            },
-          },
-        ]
-      );
-    };
-
-    return (
-      <Pressable
-        onLongPress={() => handleDeleteComment(commentId)}
-        onPressOut={() => setLongPressedCommentId(null)} // Reset the long-pressed item
-        style={longPressedCommentId === commentId ? styles.deleteElement : null}
-      >
-        <View style={styles.commentContainer}>
-          <Text style={styles.commentText} key={commentId}>
-            {commentText}
-          </Text>
-        </View>
-      </Pressable>
-    );
   };
 
   return (

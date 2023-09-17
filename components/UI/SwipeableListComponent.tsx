@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import { deleteCommentBE } from "../../helpers/http";
-import AddCommentModalScreen from "../../screens/AddCommentModalScreen";
 
 interface DataItem {
   id: string;
@@ -26,6 +25,7 @@ export default function SwipeableListComponent({
   /* becouse of backend datatype needs to reconstruct  */
   for (const [id, text] of Object.entries(items)) {
     dataArray.push({ id, text });
+    dataArray.reverse();
   }
 
   const [data, setData] = useState<DataItem[]>(dataArray);
@@ -35,22 +35,13 @@ export default function SwipeableListComponent({
     setData((prevData) => prevData.filter((item) => item.id !== commentId));
   }, []);
 
+  /*
+  needs it later
   const editItem = useCallback((id: string) => {
     Alert.alert(`Editing item with id ${id}`);
   }, []);
 
-  const renderRightAction = useCallback(
-    (item: DataItem) => (
-      <TouchableOpacity
-        onPress={() => deleteItem(item.id)}
-        style={styles.rightAction}
-      >
-        <Text style={styles.actionText}>Delete</Text>
-      </TouchableOpacity>
-    ),
-    [deleteItem]
-  );
-
+  
   const renderLeftAction = useCallback(
     (item: DataItem) => (
       <TouchableOpacity
@@ -61,6 +52,18 @@ export default function SwipeableListComponent({
       </TouchableOpacity>
     ),
     [editItem]
+  );
+*/
+  const renderRightAction = useCallback(
+    (item: DataItem) => (
+      <TouchableOpacity
+        onPress={() => deleteItem(item.id)}
+        style={styles.rightAction}
+      >
+        <Text style={styles.actionText}>Delete</Text>
+      </TouchableOpacity>
+    ),
+    [deleteItem]
   );
 
   const renderItem = useCallback(
@@ -80,7 +83,7 @@ export default function SwipeableListComponent({
         keyExtractor={(item) => item.id}
         enableOpenMultipleRows={false}
         renderItem={renderItem}
-        renderLeftActions={renderLeftAction}
+        //  renderLeftActions={renderLeftAction}
         renderRightActions={renderRightAction}
       />
     </View>
