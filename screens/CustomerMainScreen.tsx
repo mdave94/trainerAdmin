@@ -4,6 +4,7 @@ import CustomButton from "../components/UI/CustomButton";
 import AddCommentModalScreen from "./AddCommentModalScreen";
 import React from "react";
 import SwipeableListComponent from "../components/UI/SwipeableListComponent";
+import { GlobalStyles } from "../components/UI/GlobalStyles";
 
 type CustomerMainScreenProps = {
   route: any;
@@ -35,24 +36,26 @@ function CustomerMainScreen(params: CustomerMainScreenProps) {
       </View>
 
       <View style={styles.alignItemCenter}>
-        <Text
-          style={{
-            fontSize: 28,
-          }}
-        >
-          Membership :
-        </Text>
-        {customerData.membershipType !== "" ? (
+        <View style={styles.membershipContainer}>
           <Text
             style={{
-              fontSize: 112,
+              fontSize: 28,
             }}
           >
-            {customerData.membershipType}
+            Membership
           </Text>
-        ) : (
-          <Text>No membership</Text>
-        )}
+          {customerData.membershipType !== "" ? (
+            <Text
+              style={{
+                fontSize: 112,
+              }}
+            >
+              {customerData.membershipType}
+            </Text>
+          ) : (
+            <Text>No membership</Text>
+          )}
+        </View>
       </View>
 
       <View style={styles.bottomContainer}>
@@ -93,6 +96,15 @@ const styles = StyleSheet.create({
   deleteElement: {
     opacity: 0.8,
   },
+  membershipContainer: {
+    minHeight: 164,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 24,
+    backgroundColor: GlobalStyles.colors.blue,
+    width: 220,
+    marginBottom: 24,
+  },
   flatlistContainer: {
     marginHorizontal: 12,
     height: 300,
@@ -107,7 +119,6 @@ const styles = StyleSheet.create({
     fontSize: 42,
     marginBottom: 24,
   },
-
   commentText: {
     maxWidth: "70%",
     marginLeft: 24,
