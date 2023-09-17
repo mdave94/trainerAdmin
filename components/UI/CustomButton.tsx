@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     width: 240,
   },
   pressed: {
+    transform: [{ scale: 0.95 }],
     opacity: 0.8,
   },
   buttonText: {

@@ -78,6 +78,7 @@ function AddCustomerScreen(params: AddCustomerProps) {
           placeholder="example@email.com"
           iconSize={24}
           iconName="at"
+          keyboardType="email-address"
           onChangeText={(value) => handleInputChange("email", value)}
         />
       </View>
